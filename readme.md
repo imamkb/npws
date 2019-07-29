@@ -1,6 +1,6 @@
 # News Portal Website(NPWS)
 
-During our odd semester, the college I currently study at taught us a subject called Software Engineering. For term work in that subject, we needed to use XAMPP to build a software to showcase our software development and managerial skills. XAMPP is basically a cross-platform FOSS stack package, containing Apache, MariaDB, and other PHP, Perl interpreters. The code here, in this repository is a very stripped down version of the software that I had built along with another teammate(_who still hasn't joined GitHub as of this commit_) in a span of 48 hours.
+During the 2018 odd semester, the college I currently study at taught us a subject called Software Engineering. For term work in that subject, we needed to use XAMPP to build a software to showcase our software development and managerial skills. XAMPP is basically a cross-platform FOSS stack package, containing Apache, MariaDB, and PHP, Perl interpreters. The code here, in this repository is a very stripped down version of the software that my teammate(_who still hasn't joined GitHub as of this commit_) and I had built in a span of 48 hours.
 
 ## Introduction
 

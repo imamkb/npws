@@ -5,3 +5,5 @@ npws-old*.sql
 npws/uploads/*
 # but keep the readme file for reference purposes
 !npws/uploads/readme.md
+
+npws/public/bkg-old.gif

@@ -1,0 +1,7 @@
+# ignore all the older SQL dumps
+npws-old*.sql
+
+# ignore all of the images inside the uploads folder
+npws/uploads/*
+# but keep the readme file for reference purposes
+!npws/uploads/readme.md

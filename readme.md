@@ -17,3 +17,5 @@ The setup should be quite straightforward for somebody who has already used XAMP
 ## Conclusion
 
 This code has been written quickly and haphazardly. While we currently do not have plans of actually making any stable version of this code, we may reconsider some day in the future.
+
+>UPDATE: This is the future me, and I have made a few minor fixes to mitigate a few security critical issues. Made these fixes out of interest.

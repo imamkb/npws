@@ -23,7 +23,7 @@
 		else if(isset($_SESSION) && $_SESSION['admin'] && array_key_exists($_GET['page'], $adminwhitelist))	//these pages can only be accessed if admin
 			$page = $adminwhitelist[$_GET['page']];
 		else {
-			$page = 'logout.php';	//log the user out, and/or deauth them if they are trying to access pages outside this whitelist...
+			$page = $whitelist['homepage'];	//give the user the homepage if they are trying to access pages outside this whitelist...
 			//header("Location: ./deauth.php");
 		}
 	} else $page = $whitelist['homepage'];	//if the get parameter is not set, assume homepage.php

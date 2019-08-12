@@ -76,7 +76,7 @@
 			<div class="mui-divider"></div>
 			<table class="mui-table">
 				<tr><td>
-					<span>You can register yourself as an admin here, which allows you to view news.</span>
+					<span>You can register yourself here, which allows you to view news.</span>
 				</td></tr>
 				<?php if($error) { ?>
 				<tr><td>

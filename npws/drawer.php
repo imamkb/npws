@@ -4,28 +4,28 @@
 
 	if(!isset($_SESSION['name']))	die("You are not logged in to NPWS.<br><a href='./index.php'>Go to login.</a>"); //header("Location: ./index.php");	//redirect to login if user has no session
 
-	$included = true;	//this variable will be used to check whether the pages are included into the page or not
+	$included = true;	//this flag will be used to check whether the pages are included into this drawer page or not
 
-	if(!isset($_GET) || !isset($_GET['page'])) {
-		$page = 'homepage-in.php';
-	}
-	else if($_GET['page'] === 'homepage') {
-		$page = 'homepage-in.php';
-	}
-	else if($_GET['page'] === 'modpass') {
-		$page = 'modpass-in.php';
-	}
-	else if(isset($_SESSION) && $_SESSION['admin']) {
-		if($_GET['page'] === 'post') {
-			$page = 'post-in.php';
+	//below are the whitelisted page parameters that will include the respective page into the drawer page
+	$whitelist = array(
+		'homepage' => 'homepage-in.php',
+		'modpass'  => 'modpass-in.php',
+	);
+	$adminwhitelist = array(
+		'post' => 'post-in.php',
+		'register' => 'register-in.php',
+		'edit' => 'edit-in.php',
+	);
+	
+	if(isset($_GET) || isset($_GET['page'])) {
+		$page = $whitelist[$_GET['page']];	//will get the page to be included from the whitelist
+		if(isset($_SESSION) && $_SESSION['admin'])	//these pages can only be accessed if admin
+			$page = $adminwhitelist[$_GET['page']];
+		else {
+			$page = 'logout.php';	//log the user out, and/or deauth them if they are trying to access pages outside this whitelist...
+			//header("Location: ./deauth.php");
 		}
-		else if($_GET['page'] === 'register') {
-			$page = 'register-in.php';
-		}
-		else if($_GET['page'] === 'edit') {
-			$page = 'edit-in.php';
-		}
-	} else header("Location: ./deauth.php");
+	} else $page = $whitelist['homepage'];	//if the get parameter is not set, assume homepage.php
 
 ?>
 <!DOCTYPE html>
@@ -39,32 +39,6 @@
 	<script src="<?php echo $DirPublic ?>/mui.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<?php echo $DirPublic ?>/style.css">
 	<script type="text/javascript" src="<?php echo $DirPublic ?>/jquery.min.js"></script>
-	<script type="text/javascript">
-		/*$(document).ready(function() {
-			$(".dp .overlay").click(function() {
-				activateModal();
-			});
-		});
-		function activateModal() {
-			var modal = document.createElement("div");
-			modal.className = "mui-panel";
-			$(modal).css({padding:"20px" , "max-width":"500px" , margin:"100px auto" , transition:".5s ease"});
-			var form = document.createElement("form");
-			form.action = "/dp" , form.method = "post" , form.enctype = "multipart/form-data" , form.className = "mui-form";
-			$(form).html("<p>Change your display picture:</p> \
-				<center> \
-				<div class='mui-textfield'> \
-				<input type='file' name='Picture' accept='image/*' style='font-size:12px; width:70%;'> \
-				</div> \
-				</center> \
-				<div style='height:20px;'></div> \
-				<div style='text-align:right;'> \
-				<button type='submit' class='mui-btn mui-btn--primary'>Upload</button> \
-				</div>");
-			modal.appendChild(form);
-			mui.overlay('on',modal);
-		}*/
-	</script>
 	<script type="text/javascript">
 		jQuery(function($) {
 			var $bodyEl = $('body'),

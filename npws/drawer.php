@@ -89,7 +89,7 @@
 		<table class="mui-appbar mui--appbar-height">
 			<tr><td><a class="sidedrawer-toggle mui--visible-xs-inline-block mui--visible-sm-inline-block js-show-sidedrawer"><i class="fa fa-bars"></i></a>
 			<a class="sidedrawer-toggle mui--hidden-xs mui--hidden-sm js-hide-sidedrawer"><i class="fa fa-bars"></i></a>
-			<span class="mui--text-headline appbar-brand"><?php echo isset($_GET['page'])?$_GET['page']:"Homepage" ?></span></td></tr>
+			<span class="mui--text-headline appbar-brand">News Portal Web Site<?php //echo isset($_GET['page'])?$_GET['page']:"Homepage" ?></span></td></tr>
 			</td>
 			</tr>
 		</table>

@@ -17,7 +17,7 @@
 		'edit' => 'edit-in.php',
 	);
 	
-	if(isset($_GET) || isset($_GET['page'])) {
+	if(isset($_GET) && isset($_GET['page'])) {
 		if(array_key_exists($_GET['page'], $whitelist))	//will check for spurious entries to the page parameter(not in whitelist)
 			$page = $whitelist[$_GET['page']];	//will get the page to be included from the whitelist
 		else if(isset($_SESSION) && $_SESSION['admin'] && array_key_exists($_GET['page'], $adminwhitelist))	//these pages can only be accessed if admin

@@ -18,8 +18,9 @@
 	);
 	
 	if(isset($_GET) || isset($_GET['page'])) {
-		$page = $whitelist[$_GET['page']];	//will get the page to be included from the whitelist
-		if(isset($_SESSION) && $_SESSION['admin'])	//these pages can only be accessed if admin
+		if(array_key_exists($_GET['page'], $whitelist))	//will check for spurious entries to the page parameter(not in whitelist)
+			$page = $whitelist[$_GET['page']];	//will get the page to be included from the whitelist
+		else if(isset($_SESSION) && $_SESSION['admin'] && array_key_exists($_GET['page'], $adminwhitelist))	//these pages can only be accessed if admin
 			$page = $adminwhitelist[$_GET['page']];
 		else {
 			$page = 'logout.php';	//log the user out, and/or deauth them if they are trying to access pages outside this whitelist...

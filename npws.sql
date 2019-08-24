@@ -65,5 +65,5 @@ ALTER TABLE `categories`
 	ADD PRIMARY KEY (`cat`);
 ALTER TABLE `news`
 	ADD PRIMARY KEY (`artid`),
-	ADD KEY `author` (`author`),
-	ADD KEY `category` (`category`);
+	ADD FOREIGN KEY `author` (`author`) REFERENCES `accounts` (`name`),
+	ADD FOREIGN KEY `category` (`category`) REFERENCES `categories` (`cat`);

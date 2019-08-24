@@ -1,1 +1,1 @@
-THis directory will store all of the image uploads made by the news reporters.
+This directory will store all of the image uploads made by the news reporters.

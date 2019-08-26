@@ -45,9 +45,9 @@ CREATE TABLE `news` (
 	`title` varchar(50) NOT NULL,
 	`author` varchar(50) NOT NULL,
 	`create_date` datetime NOT NULL,
-	`description` varchar(500) NOT NULL,
+	`description` text NOT NULL,
 	`category` varchar(50) NOT NULL,
-	`file_url` varchar(500) NOT NULL
+	`file_url` varchar(255) NOT NULL
 );
 
 --

@@ -82,7 +82,7 @@ ALTER TABLE `accounts`
 ALTER TABLE `categories`
 	ADD PRIMARY KEY (`cat`);
 ALTER TABLE `interested_in`
-	ADD PRIMARY KEY (`cat`,`fingerprint`);
+	ADD PRIMARY KEY (`cat`,`fingerprint`),
 	ADD CONSTRAINT `efk` FOREIGN KEY (`cat`) REFERENCES `categories` (`cat`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `news`
 	ADD PRIMARY KEY (`artid`),

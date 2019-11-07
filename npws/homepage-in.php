@@ -70,6 +70,8 @@
 	$tbl_name = "news";
 	$cat = isset($_GET['cat'])?$_GET['cat']:"";
 	// $sql = "SELECT DATE_FORMAT(create_date, '%d %b %y') as mod_date, artid, description, title, author, file_url ,category FROM $tbl_name ".(isset($_GET['cat'])?"where category='$cat' ":" ")."ORDER BY artid ".((isset($_GET['up']) && $_GET['up']==1)?"asc":"desc");
+	if(isset($_COOKIE['fpt'])) $fingerprint = $_COOKIE['fpt'];
+	else $fingerprint = 0;	//otherwise cookie not set
 	$sql = "select * from ((select temp.`artid`,
 		 		temp.`title`,
 		 		temp.`author`,
@@ -78,7 +80,7 @@
 		 		temp.`category`,
 		 		temp.`file_url`,
 		 		temp.`count`	-- the posts will be sorted based on interest
-		 from (select @fingpt:="456") t , news_temp temp)
+		 from (select @fingpt:='$fingerprint') t , news_temp temp)
 		UNION
 		(select `artid`,
 		 		`title`,
@@ -89,7 +91,7 @@
 		 		`file_url`,
 		 		@`count`:=0 `count`	-- the remaining posts with 0 interest are shown next
 		 from news where artid not in
-		(select temp.artid from (select @fingpt:="456") t , news_temp temp))) temp1
+		(select temp.artid from (select @fingpt:='$fingerprint') t , news_temp temp))) temp1
 		".(isset($_GET['cat'])?"where category='$cat' ":" ")."order by temp1.`count` ".((isset($_GET['up']) && $_GET['up']==1)?"asc":"desc");
 	$result = mysql_query($sql);
 	if($result && mysql_num_rows($result))	{

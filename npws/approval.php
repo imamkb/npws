@@ -13,7 +13,7 @@
 		if($result && isset($_COOKIE['fpt']))	{ //result achieved, and fingerprint exists
 			$category = mysql_fetch_object($result)->category;
 			$session = $_COOKIE['fpt'];
-			mysql_execute("CALL `insert_user_interest`('$category','$session')");	//insert the user's interests
+			mysql_query("CALL `insert_user_interest`('$category','$session')");	//insert the user's interests
 			echo "Success";
 		} else die("Post not found or Cookie failure.");
 	}

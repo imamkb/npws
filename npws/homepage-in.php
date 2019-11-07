@@ -1,21 +1,25 @@
 <?php include 'config.php';	//includes the common configurations ?>
 <script type="text/javascript">
-		function activateModal(title, author, date, desc, img_url) {
-			var modal = document.createElement("div");
-			var des = decodeURIComponent(desc).replace(/\n/gi,"<br>");
-			modal.className = "mui-panel";
-			$(modal).css({padding:"20px" , "max-width":"500px" , margin:"100px auto" , transition:".5s ease" , "border-radius": "20px" });
-			var article = document.createElement("article");
-			$(article).html("<center>" +
-				"<img src='" + img_url + "' style='max-width:100%; max-height:300px;'>"+
-				"</center>" +
-				"<span class='mui--text-headline'>" + decodeURIComponent(title) + "</span><br>" + 
-				"<span class='mui--text-caption' title=" + date + ">" + date + "</span> |" +
-				"<span class='mui--text-subhead'>" + author + "</span>" +
-				"<div class='mui-divider' style='margin: 10px;'></div>" +
-				"<p class='mui--text-subhead'>" + des + "</p>");
-			modal.appendChild(article);
-			mui.overlay('on',modal);
+		function activateModal(title, author, date, desc, img_url, artid) {
+			$.post("./approval.php",{art: artid}, function(data, status) {	//display modal after server approval
+				console.log(data);
+				var modal = document.createElement("div");
+				var des = decodeURIComponent(desc).replace(/\n/gi,"<br>");
+				modal.className = "mui-panel";
+				$(modal).css({padding:"20px" , "max-width":"500px" , 
+					margin:"100px auto" , transition:".5s ease" , "border-radius": "20px" });
+				var article = document.createElement("article");
+				$(article).html("<center>" +
+					"<img src='" + img_url + "' style='max-width:100%; max-height:300px;'>"+
+					"</center>" +
+					"<span class='mui--text-headline'>" + decodeURIComponent(title) + "</span><br>" + 
+					"<span class='mui--text-caption' title=" + date + ">" + date + "</span> |" +
+					"<span class='mui--text-subhead'>" + author + "</span>" +
+					"<div class='mui-divider' style='margin: 10px;'></div>" +
+					"<p class='mui--text-subhead'>" + des + "</p>");
+				modal.appendChild(article);
+				mui.overlay('on',modal);
+			});
 		}
 </script>
 <div class="mui-col-sm-10 mui-col-xs-offset-1 mui--no-user-select">
@@ -113,7 +117,7 @@
 	</center>
 	</div>
 	<div class="mui-divider"></div>
-	<center><a href="#<?php echo $news['artid']; ?>" onclick="activateModal('<?php echo $news['title']; ?>','<?php echo $news['author'] ?>','<?php echo $news['mod_date']; ?>','<?php echo $news['description'] ?>','<?php echo $news['file_url'] ?>')" style="margin:10px;">Read more</a></center>
+	<center><a href="#<?php echo $news['artid']; ?>" onclick="activateModal('<?php echo $news['title']; ?>','<?php echo $news['author'] ?>','<?php echo $news['mod_date']; ?>','<?php echo $news['description'] ?>','<?php echo $news['file_url'] ?>','<?php echo $news['artid'] ?>')" style="margin:10px;">Read more</a></center>
 </div>
 <?php 
 	} } else { ?>
